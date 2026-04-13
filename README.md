@@ -51,11 +51,10 @@ ERP/
 
 ## Voraussetzungen
 
-- [Java 21](https://adoptium.net) (Temurin LTS)
+- Java 21
 - IntelliJ IDEA (Maven bereits integriert)
-- [MySQL 8.0+](https://dev.mysql.com/downloads/)
-- [Node.js LTS](https://nodejs.org)
-
+- MySQL 8.0+
+- Node.js LTS
 ---
 
 ### 1. Datenbank einrichten
