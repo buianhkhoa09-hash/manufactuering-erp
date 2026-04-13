@@ -1,0 +1,6 @@
+erp-backend/target/
+erp-backend/src/main/resources/application.properties
+erp-frontend/node_modules/
+erp-frontend/dist/
+.idea/
+*.iml
