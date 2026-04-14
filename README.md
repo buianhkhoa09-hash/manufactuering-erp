@@ -232,6 +232,31 @@ erDiagram
 
 ---
 
+### Erklärung der Beziehungssymbole
+
+| Symbol | Bedeutung | Beispiel |
+|---|---|---|
+| `\|\|--o{` | Ein-zu-Viele (optional) | Eine Abteilung hat viele Mitarbeiter, aber ein Mitarbeiter kann auch ohne Abteilung existieren |
+| `\|\|--\|{` | Ein-zu-Viele (obligatorisch) | Ein Verkaufsauftrag muss mindestens eine Position enthalten |
+| `\|\|--o\|` | Ein-zu-Eins (optional) | Ein Verkaufsauftrag kann eine Rechnung haben — muss aber nicht |
+
+**Schlüsselkürzel in den Tabellen:**
+- `PK` — Primary Key (Primärschlüssel): eindeutiger Bezeichner jeder Zeile, wird automatisch generiert
+- `FK` — Foreign Key (Fremdschlüssel): verweist auf den Primärschlüssel einer anderen Tabelle und stellt die Verbindung zwischen Tabellen her
+
+**Beziehungen auf einen Blick:**
+- Eine **Abteilung** beschäftigt viele **Mitarbeiter**
+- Ein **Kunde** gibt viele **Verkaufsaufträge** auf
+- Ein **Mitarbeiter** erstellt viele **Verkaufsaufträge**
+- Ein **Lieferant** beliefert viele **Produkte**
+- Ein **Lieferant** erhält viele **Bestellungen**
+- Ein **Verkaufsauftrag** enthält mindestens eine **Auftragsposition**
+- Ein **Produkt** kann in vielen **Auftragspositionen** vorkommen
+- Ein **Verkaufsauftrag** wird als eine **Rechnung** abgerechnet
+- Eine **Rechnung** wird durch viele **Zahlungen** beglichen
+
+---
+
 ##  Backend-Dateistruktur
 
 ```
