@@ -128,12 +128,106 @@ Alle Ressourcen unterstützen `GET /{id}`, `PUT /{id}`, `DELETE /{id}`.
 
 ##  Datenbankschema
 
-```
-departments ←── employees
-customers   ←── sales_orders ←── sales_order_items ──→ products
-                     │
-                  invoices ←── payments
-suppliers   ←── products
+```mermaid
+erDiagram
+    DEPARTMENTS {
+        int id PK
+        varchar name
+        text description
+        timestamp created_at
+    }
+    EMPLOYEES {
+        int id PK
+        varchar first_name
+        varchar last_name
+        varchar email
+        varchar role
+        int department_id FK
+        date hire_date
+        decimal salary
+        varchar status
+    }
+    CUSTOMERS {
+        int id PK
+        varchar name
+        varchar email
+        varchar phone
+        varchar city
+        varchar country
+        varchar status
+    }
+    SUPPLIERS {
+        int id PK
+        varchar name
+        varchar contact_name
+        varchar email
+        varchar country
+        varchar status
+    }
+    PRODUCTS {
+        int id PK
+        varchar name
+        varchar sku
+        varchar category
+        decimal unit_price
+        decimal cost_price
+        int stock_qty
+        int reorder_level
+        int supplier_id FK
+        varchar status
+    }
+    PURCHASE_ORDERS {
+        int id PK
+        int supplier_id FK
+        varchar status
+        date order_date
+        decimal total_amount
+    }
+    SALES_ORDERS {
+        int id PK
+        int customer_id FK
+        varchar status
+        date order_date
+        date delivery_date
+        decimal total_amount
+        int created_by FK
+    }
+    SALES_ORDER_ITEMS {
+        int id PK
+        int sales_order_id FK
+        int product_id FK
+        int quantity
+        decimal unit_price
+        decimal line_total
+    }
+    INVOICES {
+        int id PK
+        int sales_order_id FK
+        varchar invoice_number
+        date issued_date
+        date due_date
+        varchar status
+        decimal total_amount
+        decimal paid_amount
+    }
+    PAYMENTS {
+        int id PK
+        int invoice_id FK
+        decimal amount
+        date payment_date
+        varchar method
+        varchar reference
+    }
+
+    DEPARTMENTS ||--o{ EMPLOYEES : "employs"
+    CUSTOMERS ||--o{ SALES_ORDERS : "places"
+    EMPLOYEES ||--o{ SALES_ORDERS : "creates"
+    SUPPLIERS ||--o{ PRODUCTS : "supplies"
+    SUPPLIERS ||--o{ PURCHASE_ORDERS : "fulfils"
+    SALES_ORDERS ||--|{ SALES_ORDER_ITEMS : "contains"
+    PRODUCTS ||--o{ SALES_ORDER_ITEMS : "included in"
+    SALES_ORDERS ||--o| INVOICES : "billed as"
+    INVOICES ||--o{ PAYMENTS : "settled by"
 ```
 
 ---
